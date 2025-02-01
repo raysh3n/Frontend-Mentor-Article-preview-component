@@ -38,8 +38,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [here]()
-- Live Site URL: [here]()
+- Solution URL: [here](https://www.frontendmentor.io/solutions/responsive-article-preview-component-9R8YkC2vkK)
+- Live Site URL: [here](https://app.netlify.com/sites/fem-article-preview-component-raysh3n/overview)
 
 ## My process
 
