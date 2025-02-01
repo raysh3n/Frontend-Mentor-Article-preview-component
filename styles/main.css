@@ -74,6 +74,7 @@ body {
 
 h1 {
 	font-size: 1.35rem;
+	color:var(--clr-very-dark-grayish-blue);
 	/* outline: 1px solid black; */
 
 }
