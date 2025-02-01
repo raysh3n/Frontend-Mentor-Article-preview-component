@@ -28,21 +28,18 @@ Users should be able to:
 - See the social media share links when they click the share icon
 
 ### Screenshot
+<br>Mobile<br>
+![](./mobile%20Screenshot%202025-02-01%20at%2015-32-32%20Frontend%20Mentor%20Article%20preview%20component.png)
+<br>Desktop<br>
+![](./desktop%20Screenshot%202025-02-01%20152846.png)
 
-![](./screenshot.jpg)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
 
 ### Links
 
-- Solution URL: [here](https://your-solution-url.com)
-- Live Site URL: [here](https://your-live-site-url.com)
+- Solution URL: [here](https://www.frontendmentor.io/solutions/responsive-article-preview-component-9R8YkC2vkK)
+- Live Site URL: [here](https://app.netlify.com/sites/fem-article-preview-component-raysh3n/overview)
 
 ## My process
 
@@ -59,51 +56,95 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
-
+In this project, both html and body overflow must be set to hidden. Can do it for card overflow hidden because it will not able to fully show the dialoguebox. Both the body and html seems to be situated at the same place(may try use outline to see) 
 ```html
 <h1>Some HTML code I'm proud of</h1>
 ```
 ```css
-.proud-of-this-css {
-  color: papayawhip;
+html, body {
+  /* set the overflow to hiddne to both html and body as they are the same when used outline to investigate */
+  overflow: hidden;
+  /* outline:1px solid blue; */
 }
 ```
+
+to create the dialoguebox, Have created rectangle and triangle, combining them together. Rectangle and triangle will be relative to the button. This causes the overflow, but have set html and body to overflow hidden to fix this issue. Or else there will be extra space to scroll down and right in mobile version.
+```css
+button {
+  border-radius: 50%;
+  /* padding: 0.5rem; */
+  /* width:50%; */
+  width: 2.5rem;
+  aspect-ratio: 1/1;
+  border: none;
+  position: relative;
+  background-color: hsl(218, 85%, 92%);
+}
+
+
+.rectangle {
+  visibility: hidden;
+  display: flex;
+  gap: 1.5rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 5rem;
+  width: 21rem;
+  background-color: var(--clr-very-dark-grayish-blue);
+  top: -325%;
+  right: -350%;
+  border-radius: 10px;
+  color: var(--clr-light-grayish-blue);
+}
+
+
+
+#triangle-down {
+  /* z-index: -1; */
+  position: absolute;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 20px solid var(--clr-very-dark-grayish-blue);
+  top: 92%;
+  left: 52%;
+  transform: translateX(-50%);
+  /* background-color: red; */
+}
+```
+pointer events none, when clicked, this will not go to the event in js. Especially useful when you want the button outside the image to be triggered to the js, not the element within like this img to go to js.
+```css
+.card__icons  img {
+pointer-events: none;
+}
+
+```
+
+document.querySelector is not dynamic. It will store whichever values that it has been set at first. The 2nd line of code below must be declared after toClone(cardProfileTemplate), or else it will be null.  
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+toClone(cardProfileTemplate)
+const cardIcons=document.querySelectorAll('.card__icons-item')
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+using 2 templates in this project. Load one of the template when the document on load. 
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+
+to change svg color via css, use fill 
+
+to change svg color via js, this is how to do it, make sure target the PATH, then update the fill, (not use classList): 
+```js
+const buttonSVG = cardFooterButton.querySelector('path');
+  buttonSVG.setAttribute("fill", "hsl(210, 46%, 95%)");
+
+```
+
+insertBefore 
+parentElement.insertBefore(theElementYouWantToInsert, theBeforeElement)
+```js
+    cardFooter.insertBefore(cloned, cardFooterButton);
+```
+
 
 ### Continued development
-
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
-
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
-
-## Author
-
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+Refactor the code. 
